@@ -1,2 +1,0 @@
-export const LOGO_URL="https://thumbs.dreamstime.com/b/fast-food-retro-illustration-vector-vintage-logo-design-weiner-hot-dog-icon-cheese-rustic-premium-quality-tasty-124431353.jpg"
-export const CDN_URL="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"

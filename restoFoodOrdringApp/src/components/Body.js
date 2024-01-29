@@ -1,24 +1,30 @@
 import ResCard from "./ResCard";
-
 import { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
+import { Link } from "react-router-dom";
+import { RESTO_API } from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
+
 const Body=()=>{
     const [res,setRes]=useState([]);
     const [filterRes,setFilterRes]=useState([]);
     const [text,setText]=useState("")
+    const onlineStatus=useOnlineStatus();
     useEffect(()=>{
       fetchData();
     },[])
     const fetchData=async()=>{
-      const data= await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7199008&lng=75.857383&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+      const data= await fetch(RESTO_API);
       const json=await data.json();
-      console.log(json);
+      
        setRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
        setFilterRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
-    if(res.length===0){
-      return <ShimmerUI/>
+    if(onlineStatus===false) return <h3 className="offline">Looks like you're offline!! please check your internet conection</h3>
+    if (!res || res.length === 0) {
+      return <ShimmerUI />;
     }
+  
     return(
         <div className='body'>
             <div className="filter-btn">
@@ -40,7 +46,7 @@ const Body=()=>{
             <div className='res-container'>
              { 
                 filterRes.map((restorent)=>(
-                  <ResCard key={restorent?.info?.id} resData={restorent}/>
+                  <Link className="card-link" key={restorent?.info?.id} to={"/restorent/"+restorent?.info?.id}><ResCard  resData={restorent}/></Link>
                 ))
               }
                 

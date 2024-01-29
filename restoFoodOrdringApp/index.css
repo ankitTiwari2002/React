@@ -27,7 +27,13 @@ ul>li{
     background: #f0f0f0;
     border-radius: 10px;
     margin: 18px;
+    color: black;
+    text-decoration: none;
 }
+.card-link{
+    text-decoration: none;
+}
+
 .card:hover{
     border: 1px solid black;
     cursor: pointer;
@@ -80,4 +86,17 @@ ul>li{
     font-size: large;
     border-radius: 10px;
 }
-
+.menue-container>ul{
+    display: block;
+}
+.offline{
+    color: red;
+}
+.nav-container>ul>li{
+    text-decoration: none;
+    color: black;
+} 
+.nav-container>ul>li>a{
+    text-decoration: none;
+    color: black;
+} 
