@@ -20,6 +20,7 @@ const Body = () => {
      setRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
      setFilterRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
+  console.log(res);
   if(onlineStatus===false) return <h3 className="offline">Looks like you're offline!! please check your internet conection</h3>
   if (!res || res.length === 0) {
     return <ShimmerUI />;
