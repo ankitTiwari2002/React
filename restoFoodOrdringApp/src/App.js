@@ -3,20 +3,24 @@ import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
 import {createBrowserRouter, RouterProvider, Outlet} from 'react-router-dom'
-//import About from './components/About';
-//import Contact from './components/Contact';
 import Error from './components/Error';
-//import RestoMenue from './components/RestoMenue';
 import ShimmerUI from './components/ShimmerUI';
+import appStore from './utils/appStore';
+import { Provider } from 'react-redux';
+import Cart from './components/Cart';
 const About=lazy(()=>import('./components/About'));
 const Contact=lazy(()=>import('./components/Contact'))
 const RestoMenue=lazy(()=>import('./components/RestoMenue'))
 const AppLayout=()=>{
     return(
-        <div>
-            <Header/>
-            <Outlet/>
-        </div>
+        
+        <Provider store={appStore}>
+            <div>
+                <Header/>
+                <Outlet/>
+            </div>
+        </Provider>
+        
     )
 }
 const appRouter=createBrowserRouter([
@@ -39,6 +43,10 @@ const appRouter=createBrowserRouter([
             {
                 path: '/restorent/:resId',
                 element: <Suspense fallback={<ShimmerUI/>}><RestoMenue/></Suspense>
+            },
+            {
+                path: '/Cart',
+                element: <Suspense fallback={<ShimmerUI/>}><Cart/></Suspense>
             },
         ],
         errorElement: <Error/>,
